@@ -1,9 +1,26 @@
 # 概要
 Google Map のタイムラインを表示する React アプリケーション。
+実際に動作させているサンプルは下記の Pages を参照。
 
-# タイムラインの取得方法
+https://nabedroid.github.io/google-timeline-viewer/
+
+# 使い方
+ローカルで使用する場合は下記の手順で実行する。
+
+1. リポジトリを clone する
+1. プロジェクトのルートディレクトリに`.env`を作成する
+1. VITE_GOOGLE_API_KEY と VITE_GOOGLE_MAP_ID に自分の GOOGLE_API_KEY と MAP_ID を設定する
+1. ターミナルを開く
+1. docker compose up frontend を実行する
+1. ブラウザで http://localhost:3000/google-timeline-viewer/ を開く
+1. `json ファイル読み込み`ボタンをクリック
+1. タイムラインの json ファイルを選択
+1. カレンダーから有効な日付を選択
+
+## タイムラインの json ファイルの取得方法
 Android 端末で以下の手順を実行する。
 パソコンからは取得できない。
+Apple 端末は知らない。
 
 1. 設定アプリ を開く
 1. 位置情報 > 位置情報サービス > タイムライン をタップ
@@ -91,6 +108,42 @@ Android 端末で以下の手順を実行する。
 ※1 visit/activity/timelinePath/timelineMemory のいずれか必須
 
 ※2 trip/note のいずれか必須
+
+今回のアプリで使った semanticSegments の activity/timelinePath/visit について、詳しく説明する。
+
+## activity
+- 移動に関する情報
+- 移動を移動手段ごとに区切って出力される
+- activity と visit は時系列上で交互に出力される
+  - activity の開始時間は、直前の visit の終了時間と一致する
+  - activity の終了時間は、次の visit の開始時間と一致する
+- activity が連続して出力されることもある
+  - 電車→徒歩など、移動手段が切り替わった場合
+- 開始地点・終了地点の精度は高くない
+  - 移動手段切り替え時に、終了地点と次の開始地点が一致しないことがある
+
+## timelinePath
+- 移動経路を表す座標の配列
+- 2時間おきに時間内に移動した座標とともに出力される
+- 座標の記録間隔は一定ではない（10分や4分など）
+- その2時間の間に移動が一切なければ、timelinePath 自体が出力されない
+- GPS のブレなど、微細な移動も含めて記録される
+- Google マップのタイムライン表示では、activity の時間範囲に対応する座標のみが使用されている
+
+## visit
+- 訪問（滞在）した場所の情報
+- visit と activity は時系列上で交互に出力される
+  - visit の開始時間は、直前の activity の終了時間と一致する
+  - visit の終了時間は、次の activity の開始時間と一致する
+- 同一の開始時間・終了時間を持つ visit が複数出力されることがある
+  - hierarchyLevel が異なる
+  - 建物 → 店舗のような入れ子構造を表す
+
+```text
+visit       : [ visit ]            [ visit ]     [    visit    ]
+activity    :         [ act ][ act ]       [ act ]             [ act ]
+timelinePath: [       ●●●][●●●●●●●●  ][     ●●●●●]            [ ●●●●●    ]
+```
 
 # 参考
 - [Google マップ タイムラインを管理する](https://support.google.com/maps/answer/6258979?hl=ja&co=GENIE.Platform%3DAndroid)
