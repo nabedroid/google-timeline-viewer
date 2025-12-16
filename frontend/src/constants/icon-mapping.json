@@ -1,0 +1,17 @@
+{
+  "MARKER": { "x": 128, "y": 256, "width": 128, "height": 128, "mask": true },
+  "CYCLING": { "x": 0, "y": 0, "width": 128, "height": 128, "mask": true },
+  "FLYING": { "x": 384, "y": 128, "width": 128, "height": 128, "mask": true },
+  "IN_BUS": { "x": 256, "y": 0, "width": 128, "height": 128, "mask": true },
+  "IN_FERRY": { "x": 128, "y": 0, "width": 128, "height": 128, "mask": true },
+  "IN_PASSENGER_VEHICLE": { "x": 0, "y": 256, "width": 128, "height": 128, "mask": true },
+  "IN_SUBWAY": { "x": 384, "y": 256, "width": 128, "height": 128, "mask": true },
+  "IN_TRAIN": { "x": 0, "y": 384, "width": 128, "height": 128, "mask": true },
+  "IN_TRAM": { "x": 128, "y": 384, "width": 128, "height": 128, "mask": true },
+  "IN_VEHICLE": { "x": 384, "y": 0, "width": 128, "height": 128, "mask": true },
+  "MOTORCYCLING": { "x": 256, "y": 384, "width": 128, "height": 128, "mask": true },
+  "RUNNING": { "x": 0, "y": 128, "width": 128, "height": 128, "mask": true },
+  "SKIING": { "x": 256, "y": 128, "width": 128, "height": 128, "mask": true },
+  "UNKNOWN_ACTIVITY_TYPE": { "x": 256, "y": 256, "width": 128, "height": 128, "mask": true },
+  "WALKING": { "x": 128, "y": 128, "width": 128, "height": 128, "mask": true }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "frontend",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": { 
+    "start": "vite --open",
+    "dev": "vite --host",
+    "preview": "vite preview",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "deck.gl": "^9.2.4",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "react-map-gl": "^8.1.0",
+    "maplibre-gl": "^5.14.0",
+    "@mui/material": "^7.3.6",
+    "@mui/icons-material": "^7.3.6",
+    "@mui/x-date-pickers": "^8.21.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "dayjs": "^1.11.19",
+    "sql.js": "^1.13.0",
+    "@vis.gl/react-google-maps": "^1.7.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.1",
+    "vite": "^5.3.1"
+  }
+}

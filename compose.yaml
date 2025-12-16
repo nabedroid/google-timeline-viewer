@@ -1,0 +1,16 @@
+services:
+  frontend:
+    container_name: frontend
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    environment:
+      - VITE_GOOGLE_API_KEY=${VITE_GOOGLE_API_KEY}
+      - VITE_GOOGLE_MAP_ID=${VITE_GOOGLE_MAP_ID}
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+    volumes:
+      - ./frontend/src:/app/src
+    ports:
+      - "3000:3000"
+    command: npm run dev
