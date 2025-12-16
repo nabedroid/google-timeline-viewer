@@ -16,8 +16,10 @@ jobs:
         with:
           node-version: 20
       - name: Install dependencies
+        working-directory: frontend
         run: npm ci
       - name: Build
+        working-directory: frontend
         env:
           VITE_GOOGLE_API_KEY: ${{ secrets.VITE_GOOGLE_API_KEY }}
           VITE_GOOGLE_MAP_ID: ${{ secrets.VITE_GOOGLE_MAP_ID }}
@@ -26,4 +28,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./frontend/dist
